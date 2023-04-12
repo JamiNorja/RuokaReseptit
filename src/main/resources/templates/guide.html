@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+<title>Ohje</title>
+</head>
+<body>
+
+<h1>Reseptin ohje</h1>
+	<div>
+   		<form th:object="${recipe}" >
+    	<input type="hidden" id="id" th:field="*{id}" />
+    
+    	<label for="guide">Ohje</label>
+		<input type="text" id="guide" th:field="*{guide}" />
+    
+    	<a href="/recipelist" class="btn btn-danger" style="margin-left: 10px">Palaa reseptilistaan</a>
+	
+		</form>
+	</div>
+</body>
+</html>

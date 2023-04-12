@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+<title>Pääsivu</title>
+</head>
+<body>
+	<div style="text-align: center; padding-top: 100px">
+	
+		<h3>Tervetuloa pääsivulle <b sec:authentication="name"></b>!</h3>
+		<i>Roolisi on tänään <b sec:authentication="principal.authorities"></b></i>
+		<br><br>
+		
+		<a href="/recipelist" class="btn btn-info">Siirry resepteihin</a><br><br>
+		<a sec:authorize="hasAuthority('ADMIN')" href="/admin/addRecipe" class="btn btn-success">Uusi resepti</a><br><br><br>   
+		
+		
+     <a href="/logout" class="btn btn-danger"><i>Kirjaudu ulos</i></a>
+	</div>
+</body>
+</html>

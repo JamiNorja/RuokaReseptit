@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Uusi resepti</title>
+</head>
+<body>
+	<h1 style="text-align: center">Uusi resepti</h1>
+	<div style="text-align: center">
+		<form th:object="${recipe}" th:action="@{/saveRecipe}" action="#" method="post">
+		
+			<label for="name">Nimi</label>
+			<input type="text" id="name" th:field="*{name}" /><br><br>
+			
+		  	<label>Vaikeustaso</label>
+			 <select id="difficulty" th:field="*{difficulty}">
+       			<option th:each="difficulty: ${difficulties}" th:value="${difficulty.difficultyid}" th:text="${difficulty.name}"></option>
+    		</select><br><br>
+    		
+			<label for="guide">Ohje</label>
+			<input type="text" id="guide" th:field="*{guide}" /><br><br>
+			
+			<label for="ranking">Arvosana (1 huono - 5 paras)</label>
+			<input type="text" id="ranking" th:field="*{ranking}" /><br><br>
+			
+			<label>Tyyppi</label>
+			 <select id="type" th:field="*{type}">
+       			<option th:each="type: ${types}" th:value="${type.typeid}" th:text="${type.name}"></option>
+    		</select><br><br>
+		
+		<input type="submit" value="Save"></input>
+		
+		</form>
+	</div>
+
+
+</body>
+</html>

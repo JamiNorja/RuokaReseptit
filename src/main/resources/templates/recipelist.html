@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+<title>Reseptilista</title>
+</head>
+<body>
+	<h1 style="text-align: center">Reseptit</h1><br><br>
+	
+	<table class="table table-striped">
+		<tr>
+			<th>Id</th>
+			<th>Nimi</th>
+			<th>Vaikeustaso</th>
+			<th>Ohje</th>
+			<th>Arvosana<br> 
+			<i>(1 huono - 5 paras)</i> 
+			</th> 
+			<th>Tyyppi</th>
+			<th></th>
+			<th></th>
+			
+			<tr th:each="recipe : ${recipes}">
+			<td th:text="${recipe.id}"></td>
+				<td th:text="${recipe.name}"></td>
+				<td th:text="${recipe.difficulty != null} ? ${recipe.difficulty.name} : 'null value!'">Vaikeustaso</td>
+						
+				<td><a th:href="@{/guide/{id}(id=${recipe.id})}" class="btn btn-info">Ohje</a></td>
+				
+				<td th:text="${recipe.ranking}" style="padding-left: 50px"></td>
+				<td th:text="${recipe.type != null} ? ${recipe.type.name} : 'null value!'">Tyyppi</td>
+				<td sec:authorize= "hasAuthority('ADMIN')" ><a th:href="@{/delete/{id}(id=${recipe.id})}" class="btn btn-danger">Poista</a></td>
+				<td sec:authorize= "hasAuthority('ADMIN')"><a th:href="@{/edit/{id}(id=${recipe.id})}" class="btn btn-yellow">Muokkaa</a></td>
+		</tr>
+	</table>
+	<a sec:authorize= "hasAuthority('ADMIN')" href="/addRecipe" class="btn btn-success" style="margin-left: 10px">Uusi resepti</a>
+	<br><br>
+	<a href="/main" class="btn btn-info" style="margin-left: 10px">Palaa pääsivulle</a>
+	<br><br>
+	<a href="/logout" class="btn btn-danger" style="margin-left: 10px"><i>Kirjaudu ulos</i></a>
+
+</body>
+</html>
+
