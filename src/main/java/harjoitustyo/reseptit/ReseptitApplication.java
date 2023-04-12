@@ -43,9 +43,15 @@ public class ReseptitApplication {
 			difficultyRepository.save(new Difficulty("Vaikea"));
 			
 			log.info("create recipes"); // String name, String difficulty, String guide, int ranking, Type type
-			recipeRepository.save(new Recipe("Munakas", difficultyRepository.findByName("Helppo").get(0), "Kaksi munaa ja mausteita.", 4, typeRepository.findByName("Aamiainen").get(0)));
-			recipeRepository.save(new Recipe("Burrito", difficultyRepository.findByName("Vaikea").get(0), "Jauhelihaa, tortilla, majoneesi, kurkku, tomaatti ja salaatti.", 5, typeRepository.findByName("Päivällinen").get(0)));
-			recipeRepository.save(new Recipe("Suklaahippukeksi", difficultyRepository.findByName("Keskivaikea").get(0), "Voita, sokeria, fariinisokeria, vanilijasokeria, kananmuna, vehnäjauhoja, ruokasooda, suola, suklaalevy, suklaahippuja", 4, typeRepository.findByName("Leivonnainen").get(0)));
+			recipeRepository.save(new Recipe("Munakas", difficultyRepository.findByName("Helppo").get(0), "Riko munat kulhossa ja lisää mausteet. Lisää öljy pannulle ja kaada munakasseos kuumaan pannuun. Laske lämpöä. Vedä munakasmassaa lastalla pohjaa pitkin reunoilta keskelle, kunnes munakas on lähes hyytynyt. Lisää sitten täytteet.", 4, typeRepository.findByName("Aamiainen").get(0)));
+			
+			
+			recipeRepository.save(new Recipe("Burrito", difficultyRepository.findByName("Vaikea").get(0), "Täytä tortillat lämpimällä jauhelihaseoksella. Ripottele päälle tomaatit, kurkut, saalatti, majoneesi ja juustoraaste. Pyöritä tortillat rulliksi. Nosta rullat pannulle ja paista hetki, kunnes pinnasta tulee ruskea.", 5, typeRepository.findByName("Päivällinen").get(0)));
+			
+			
+			recipeRepository.save(new Recipe("Suklaahippukeksi", difficultyRepository.findByName("Keskivaikea").get(0), "Vatkaa lämmin voi ja sokerit vatkaimella tasaiseksi. Vatkaa muna ja vanilja joukkoon. Yhdistä jauhot, sooda ja suola. Rouhi suklaa. Sekoita kaikki. Nostele taikina lusikalla nokareiksi pelleille. Kypsennä 200-asteisessa uunissa 10 minuuttia.", 4, typeRepository.findByName("Leivonnainen").get(0)));
+			
+			
 			
 			AppUser user1 = new AppUser("user", "$2a$10$JokuQqVqYScOZ28NvRcqwOcCMxwFuQJ8DRSald/3ODN9hkBGa0p.O", "USER");
 			AppUser user2 = new AppUser("admin", "$2a$10$83q6U7uFRHKg3G43nl4TmOdrxKEUJ8l.lDLtKkdV.M8Q/FGNuxXOS", "ADMIN");

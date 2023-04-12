@@ -7,13 +7,23 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 
 @Entity
 public class Recipe {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	private String name, guide;
+	
+	
+	@Size(min = 3, max = 30, message = "Merkkiraja on 3-30")
+	private String name;
+	
+	@NotBlank(message = "Reseptillä täytyy olla ohje")
+	private String guide;
+	
 	private int ranking;
 	
 	@ManyToOne(fetch = FetchType.EAGER)

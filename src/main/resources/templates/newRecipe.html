@@ -9,21 +9,23 @@
 	<div style="text-align: center">
 		<form th:object="${recipe}" th:action="@{/saveRecipe}" action="#" method="post">
 		
-			<label for="name">Nimi</label>
-			<input type="text" id="name" th:field="*{name}" /><br><br>
+			<label for="name">Nimi: </label>
+			<input type="text" id="name" th:field="*{name}" />
+			<div th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Error</div><br><br> 
 			
-		  	<label>Vaikeustaso</label>
+		  	<label>Vaikeustaso: </label>
 			 <select id="difficulty" th:field="*{difficulty}">
        			<option th:each="difficulty: ${difficulties}" th:value="${difficulty.difficultyid}" th:text="${difficulty.name}"></option>
     		</select><br><br>
     		
-			<label for="guide">Ohje</label>
-			<input type="text" id="guide" th:field="*{guide}" /><br><br>
+			<label for="guide">Ohje: </label>
+			<textarea id="guide" th:field="*{guide}" style="width: 300px; height: 200px; resize: vertical;"></textarea>
+			<div th:if="${#fields.hasErrors('guide')}" th:errors="*{guide}">Error</div><br><br>
 			
-			<label for="ranking">Arvosana (1 huono - 5 paras)</label>
-			<input type="text" id="ranking" th:field="*{ranking}" /><br><br>
+			<label for="ranking">Arvosana (1 huono - 5 paras): </label>
+			<input type="number" id="ranking" th:field="*{ranking}" min="1" max="5"/><br><br>
 			
-			<label>Tyyppi</label>
+			<label>Tyyppi: </label>
 			 <select id="type" th:field="*{type}">
        			<option th:each="type: ${types}" th:value="${type.typeid}" th:text="${type.name}"></option>
     		</select><br><br>
