@@ -1,8 +1,5 @@
 package harjoitustyo.reseptit.web;
 
-import java.util.List;
-import java.util.Optional;
-
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -17,7 +14,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import harjoitustyo.reseptit.domain.DifficultyRepository;
 import harjoitustyo.reseptit.domain.Recipe;
@@ -89,25 +85,12 @@ public class RecipeController {
 		return "editRecipe";
 	}
 	
-	//Resepti ohje
+	
 	@GetMapping("guide/{id}")
 	public String showGuide(@PathVariable("id") Long id, Model model) {
 		log.info("showGuide");
 		model.addAttribute("recipe", recipeRepository.findById(id));
 		return "guide";
 	}	
-	
-	//Rest alhaalla
-	
-	@GetMapping("/recipes")
-	public @ResponseBody List<Recipe> showRestRecipes() {
-		log.info("showRestRecipes");
-		return (List<Recipe>) recipeRepository.findAll();
-	}
-	
-	@GetMapping("/recipe/{id}")
-	public @ResponseBody Optional<Recipe> findRecipeRest(@PathVariable("id") Long id) {
-		return recipeRepository.findById(id);
-	}
 
 }

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+<title>Uusi tunnus</title>
+</head>
+<body>
+	<h1 style="text-align: center">Luo uusi tunnus</h1><br>
+  	<div style="text-align: center">
+		<form th:object="${newUser}" th:action="@{/admin/saveUser}" action="#" method="post">
+			
+			
+				<label>Käyttäjätunnus: <input type="text" th:field="*{username}" /></label>
+				<p th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Käyttäjätunnuksessa on virhe</p><br>
+			
+				<label> Salasana: <input type="password" th:field="*{password}" /></label>
+				<p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Salasanassa on virhe</p><br>
+			
+				<label> Syötä salasana uudelleen: <input type="password" th:field="*{passwordCheck}" /></label>
+				<p th:if="${#fields.hasErrors('passwordCheck')}" th:errors="*{passwordCheck}">Salasanat eivät täsmää</p><br>	
+			
+			<input type="submit" value="Save"></input>		
+		</form>
+		<br>
+		<a href="/main" class="btn btn-info" >Palaa pääsivulle</a>
+	</div>
+     
+</body>
+</html>
